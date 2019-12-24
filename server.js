@@ -6,6 +6,8 @@ const {transporter, mailOptions} = require('./mailer')
 const {config} = require('./config')
 
 
+console.log('...STARTING...')
+
 schedule.scheduleJob('0 * * * *', () => {
     request(config, callback)
 })
