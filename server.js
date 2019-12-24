@@ -1,14 +1,12 @@
 const request = require('request')
 const axios = require('axios')
-var schedule = require('node-schedule-tz')
+const schedule = require('node-schedule-tz')
 
 const {transporter, mailOptions} = require('./mailer')
 const {config} = require('./config')
 
 
 console.log('...STARTING...')
-console.log('process.env.RAICHY_PASS:', process.env.RAICHY_PASS)
-sendMail()
 
 schedule.scheduleJob('0 * * * *', () => {
     request(config, callback)
