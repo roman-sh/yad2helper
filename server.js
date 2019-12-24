@@ -2,7 +2,8 @@ const request = require('request')
 const axios = require('axios')
 const schedule = require('node-schedule-tz')
 
-const {transporter, mailOptions} = require('./mailer')
+// const {transporter, mailOptions} = require('./mailer')
+const {nexmo, from, to, text} = require('./sms')
 const {config} = require('./config')
 
 
@@ -49,7 +50,7 @@ function callback(error, response, body_str) {
                             .then(res => {
                                 console.log('Items deleted from db')
                                 saveToDb(itemsFromSite)
-                                sendMail()
+                                sendSms()
                             })
                             .catch((error) => {
                                 console.error(error)
@@ -76,14 +77,21 @@ function saveToDb(items) {
         })
 }
 
-function sendMail() {
-    transporter.sendMail(mailOptions, function(error, info) {
-        if (error) {
-            console.error(error)
-        } else {
-            console.log('Email sent: ' + info.response)
-        }
-    })
+function sendSms() {
+    console.log('Sending SMS...')
+    nexmo.message.sendSms(from, to, text)
 }
+
+// function sendMail() {
+//     transporter.sendMail(mailOptions, function(error, info) {
+//         if (error) {
+//             console.error(error)
+//         } else {
+//             console.log('Email sent: ' + info.response)
+//         }
+//     })
+// }
+
+
 
 

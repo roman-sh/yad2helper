@@ -5,6 +5,7 @@
   "main": "server.js",
   "dependencies": {
     "axios": "^0.19.0",
+    "nexmo": "^2.5.2",
     "node-schedule-tz": "^1.2.1-4",
     "nodemailer": "^6.4.2",
     "request": "^2.88.0"
