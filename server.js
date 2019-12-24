@@ -9,6 +9,7 @@ const {config} = require('./config')
 console.log('...STARTING...')
 
 schedule.scheduleJob('0 * * * *', () => {
+    console.log('...RUNNING scheduleJob...')
     request(config, callback)
 })
 
@@ -59,8 +60,8 @@ function callback(error, response, body_str) {
             .catch((error) => {
                 console.error(error)
             })
-
     }
+    else console.error(error)
 }
 
 function saveToDb(items) {
@@ -77,9 +78,9 @@ function saveToDb(items) {
 function sendMail() {
     transporter.sendMail(mailOptions, function(error, info) {
         if (error) {
-            console.log(error);
+            console.error(error)
         } else {
-            console.log('Email sent: ' + info.response);
+            console.log('Email sent: ' + info.response)
         }
     })
 }
