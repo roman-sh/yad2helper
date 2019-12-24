@@ -9,7 +9,7 @@ const {config} = require('./config')
 
 console.log('...APP STARTED...')
 
-schedule.scheduleJob('10 * * * *', () => {
+schedule.scheduleJob('15 * * * *', () => {
     console.log('...RUNNING scheduleJob...')
     request(config, callback)
 })
