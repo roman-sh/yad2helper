@@ -9,7 +9,7 @@ const {config} = require('./config')
 
 console.log('...APP STARTED...')
 
-schedule.scheduleJob('15 * * * *', () => {
+schedule.scheduleJob('0 * * * *', () => {
     console.log('...RUNNING scheduleJob...')
     request(config, callback)
 })
@@ -48,7 +48,7 @@ function callback(error, response, body_str) {
                     if (!isUpToDate) {
                         axios.delete('https://yad2helper-dd4dc.firebaseio.com/items.json')
                             .then(res => {
-                                console.log('Items deleted from db')
+                                console.log(`[axios.delete] statusCode: ${res.status}`)
                                 saveToDb(itemsFromSite)
                                 sendSms()
                             })
@@ -57,7 +57,6 @@ function callback(error, response, body_str) {
                             })
                     }
                 }
-                // console.log(res)
             })
             .catch((error) => {
                 console.error(error)
@@ -70,7 +69,6 @@ function saveToDb(items) {
     axios.post('https://yad2helper-dd4dc.firebaseio.com/items.json', items)
         .then((res) => {
             console.log(`[saveToDb] statusCode: ${res.status}`)
-            // console.log(res)
         })
         .catch((error) => {
             console.error(error)
