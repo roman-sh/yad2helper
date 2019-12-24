@@ -13,7 +13,7 @@ var transporter = nodemailer.createTransport({
 })
 
 var mailOptions = {
-    from: 'raichy@gmail.com',
+    from: 'yad2helper@gmail.com',
     to: 'shmigelsky@gmail.com',
     subject: 'yad2helper',
     text: 'New item is available'
