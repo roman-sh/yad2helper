@@ -7,6 +7,7 @@ const {config} = require('./config')
 
 
 console.log('...STARTING...')
+console.log('process.env.RAICHY_PASS:', process.env.RAICHY_PASS)
 
 schedule.scheduleJob('0 * * * *', () => {
     request(config, callback)
