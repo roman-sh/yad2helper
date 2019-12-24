@@ -6,7 +6,7 @@ const {transporter, mailOptions} = require('./mailer')
 const {config} = require('./config')
 
 
-console.log('...STARTING...')
+console.log('...APP STARTED...')
 
 schedule.scheduleJob('0 * * * *', () => {
     console.log('...RUNNING scheduleJob...')
@@ -31,6 +31,7 @@ function callback(error, response, body_str) {
             .then((res) => {
                 console.log(`[axios.get] statusCode: ${res.status}`)
                 if (!res.data) {
+                    console.log('Db is empty. Adding items...')
                     saveToDb(itemsFromSite)
                 }
                 else {
